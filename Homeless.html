@@ -197,12 +197,12 @@ h3 {
             'source-layer': 'Shelters with Meals'
         });
 
-        map.addSource('All-Gender Shelters', {
+        map.addSource('All-Gender Adult Shelters', {
             type: 'vector',
             url: 'vickyj20.ayi07ng6'
         });
         map.addLayer({
-            'source-layer': 'All-Gender Shelters'
+            'source-layer': 'All-Gender Adult Shelters'
         });
 	    
 	map.addSource('Only Men Shelters', {
@@ -247,7 +247,7 @@ h3 {
 				}
 		});
 
-    var toggleableLayerIds = ['All Homeless Shelters','Shelters with Meals', 'All-Gender Shelters', 'Only Men Shelters', 'Youth Shelters', 'Low-Income'];
+    var toggleableLayerIds = ['All Homeless Shelters','Shelters with Meals', 'All-Gender Adult Shelters', 'Only Men Shelters', 'Youth Shelters', 'Low-Income'];
 
     for (var i = 0; i < toggleableLayerIds.length; i++) {
         var id = toggleableLayerIds[i];
