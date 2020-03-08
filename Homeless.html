@@ -148,7 +148,7 @@ h3 {
     var map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/vickyj20/ck7coq1gk0f9v1ipn8s9ftldt',
-	zoom: 11,
+	zoom: 12,
 	center: [-123.1207, 49.2827]
     });
 	  map.addControl(
@@ -228,7 +228,7 @@ h3 {
 	map.addLayer({
 		'source-layer': 'Low-Income'
 				});
-	var layers = ['<p>Low Income Status, 2015 ($)</p>', '0-2300', '2301-3605', '3606-4585', '4586-5095', '5096-6600', '6601-8485', '8486-10000+'];
+	var layers = ['<h3>Low Income Status, 2015 ($)</h3>', '0-2300', '2301-3605', '3606-4585', '4586-5095', '5096-6600', '6601-8485', '8486-10000+'];
         var colors = ['','#fcf8f2', '#f3b29b', '#ec6332', '#e84f17', '#bc3e10', '#6e2a11', '#381305'];
 
 				for (i = 0; i < layers.length; i++) {
