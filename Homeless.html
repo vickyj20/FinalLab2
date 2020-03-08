@@ -127,12 +127,12 @@
 		map.addControl(new mapboxgl.NavigationControl());
 
     map.on('load', function() {
-        map.addSource('Homeless', {
+        map.addSource('All Homeless Shelters', {
             type: 'vector',
             url: 'vickyj20.c0thwesv'
         });
         map.addLayer({
-            'source-layer': 'Homeless'
+            'source-layer': 'All Homeless Shelter'
         });
         
         map.addSource('Youth Shelters', {
