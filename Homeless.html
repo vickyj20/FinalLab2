@@ -8,7 +8,7 @@
 <link href="https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.css" rel="stylesheet" />
 
 <div id='map'></div>
-<div class='map-overlay' id='features'><h2>Homeless Shelters in Vancouver, BC.</h2><div id='pd'><p>Using this map, two effects can be identified. 1) The lack of homeless shelters in Vancouver, despite low income areas being present everywhere. 2) The saturation of homeless shelters being located in the same general area. </p></div></div>
+<div class='map-overlay' id='features'><h2>Homeless Shelters in Vancouver, BC.</h2><div id='pd'><p>Using this map, two effects can be identified. 1) The lack of homeless shelters in Vancouver, despite the presence of low-income populations everywhere. 2) The saturation of homeless shelters being located in the same general area. </p></div></div>
 <div class='map-overlay2' id='legend'></div>
 <nav id="menu"></nav>
 <div class='title-overlay' ><p style="color:#ffffff"> &nbsp;&nbsp;TOGGLE LAYERS<p></div>
@@ -109,7 +109,7 @@ h3 {
   line-height: 18px;
   height: 200px;
   margin-bottom:10px;
-  width: 200px;
+  width: 500px;
 }
 
 .legend-key {
@@ -226,8 +226,8 @@ h3 {
 	map.addLayer({
 		'source-layer': 'Low-Income'
 				});
-	var layers = ['0-2300', '2301-3605', '3606-4585', '4586-5095', '5096-6600', '6601-8485', '8486-10000+'];
-        var colors = ['#fcf8f2', '#f3b29b', '#ec6332', '#e84f17', '#bc3e10', '#6e2a11', '#381305'];
+	var layers = ['LOW INCOME POPULATIONS, 2015 ($)', '0-2300', '2301-3605', '3606-4585', '4586-5095', '5096-6600', '6601-8485', '8486-10000+'];
+        var colors = ['','#fcf8f2', '#f3b29b', '#ec6332', '#e84f17', '#bc3e10', '#6e2a11', '#381305'];
 
 				for (i = 0; i < layers.length; i++) {
 				  var layer = layers[i];
