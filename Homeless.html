@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>Transportation Layers</title>
+<title>Homeless Shelters</title>
 <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
 <script src="https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.js"></script>
 <link href="https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.css" rel="stylesheet" />
@@ -135,31 +135,47 @@
             'source-layer': 'Homeless'
         });
         
-        map.addSource('Meals', {
+        map.addSource('Youth Shelters', {
             type: 'vector',
-            url: 'vickyj20.c0thwesv'
+            url: 'vickyj20.7t458c5s'
         });
         map.addLayer({
-            'source-layer': 'Meals'
+            'source-layer': 'Youth Shelters'
         });
 
 
-        map.addSource('Gender Facility', {
+        map.addSource('All-Gender Shelters', {
             type: 'vector',
-            url: 'vickyj20.c0thwesv'
+            url: 'vickyj20.ayi07ng6'
         });
         map.addLayer({
-            'source-layer': 'Gender Facility'
+            'source-layer': 'All-Gender Shelters'
         });
-
-				map.addSource('Low-Income', {
-						type: 'vector',
-						url: 'vickyj20.21ess0cq'
+	    
+	map.addSource('Men Shelters', {
+            type: 'vector',
+            url: 'vickyj20.21efbymj'
+        });
+        map.addLayer({
+            'source-layer': 'Men Shelters'
+        });
+	
+	map.addSource('Shelters with Meals', {
+            type: 'vector',
+            url: 'vickyj20.cbb8dbtn'
+        });
+        map.addLayer({
+            'source-layer': 'Shelters with Meals'
+        });
+	
+	map.addSource('Low-Income', {
+		type: 'vector',
+		url: 'vickyj20.21ess0cq'
+	});
+	map.addLayer({
+		'source-layer': 'Low-Income'
 				});
-				map.addLayer({
-						'source-layer': 'Low-Income'
-				});
-				var layers = ['0-2300', '2301-3605', '3606-4585', '4586-5095', '5096-6600', '6601-8485', '8486-10000+'];
+	var layers = ['0-2300', '2301-3605', '3606-4585', '4586-5095', '5096-6600', '6601-8485', '8486-10000+'];
         var colors = ['#fcf8f2', '#f3b29b', '#ec6332', '#e84f17', '#bc3e10', '#6e2a11', '#381305'];
 
 				for (i = 0; i < layers.length; i++) {
@@ -178,7 +194,7 @@
 				}
 		});
 
-    var toggleableLayerIds = ['Meals', 'Gender Facility', 'Low-Income'];
+    var toggleableLayerIds = ['Shelters with Meals', 'All-Gender Shelters', 'Men Shelters', 'Youth Shelters', 'Low-Income'];
 
     for (var i = 0; i < toggleableLayerIds.length; i++) {
         var id = toggleableLayerIds[i];
