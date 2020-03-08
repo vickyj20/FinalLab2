@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Transportation Layers</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+<script src="https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.css" rel="stylesheet" />
+<style>
+	body { margin: 0; padding: 0; }
+	#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+</style>
+</head>
+<body>
+<style>
+    #menu {
+        background: #fff;
+        position: absolute;
+        z-index: 1;
+        top: 160px;
+        right: 10px;
+        border-radius: 3px;
+        width: 150px;
+        font-family: 'Open Sans', sans-serif;
+    }
+    #menu a {
+        font-size: 13px;
+        color: #404040;
+        display: block;
+        margin: 0;
+        padding: 0;
+        padding: 10px;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+        text-align: center;
+    }
+
+    #menu a:last-child {
+        border: none;
+    }
+
+    #menu a:hover {
+        background-color: #f8f8f8;
+        color: #404040;
+    }
+
+    #menu a.active {
+        background-color: #414141;
+        color: #ffffff;
+    }
+
+    #menu a.active:hover {
+        background: #3074a4;
+    }
+
+
+		.map-overlay {
+			position: absolute;
+			top: 280px;
+			right: 10px;
+			background: rgba(255, 255, 255, 0.6);
+			font-family: Arial, sans-serif;
+			overflow: auto;
+			border-radius: 3px;
+		}
+
+		#features {
+		  top: 0;
+		  height: 130px;
+		  margin-top: 20px;
+		  width: 110px;
+		}
+
+		#legend {
+		  padding: 10px;
+		  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+		  line-height: 18px;
+		  height: 330px;
+		  margin-bottom: 40px;
+		  width: 129px;
+			font-size: 14px
+		}
+
+		.legend-key {
+		  display: inline-block;
+		  border-radius: 20%;
+		  width: 10px;
+		  height: 10px;
+		  margin-right: 5px;
+		}
+
+		.title-overlay {
+      background-color: #414141;
+			position: absolute;
+			z-index: 0.5;
+			top: 120px;
+			right: 10px;
+			width: 150px;
+			font-family: 'Open Sans', sans-serif;
+			font-color: #ffffff
+		}
+
+		#title {
+			line-height: 0px;
+			width: 129px;
+			font-size: 13px
+			font-color: #ffffff
+		}
+
+</style>
+
+<nav id="menu"></nav>
+<div id="map"></div>
+<div class='map-overlay' id='legend'></div>
+<div class='title-overlay' ><p style="color:#ffffff"> &nbsp;&nbsp;TOGGLE LAYERS<p></div>
+
+<script>
+
+
+	mapboxgl.accessToken = 'pk.eyJ1Ijoidmlja3lqMjAiLCJhIjoiY2s2cmU2a2Z6MDU3OTNkbGExcTBhanlsNCJ9.AnDT5Fbe1lZxtUukEMhabA';
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/vickyj20/ck7coq1gk0f9v1ipn8s9ftldt',
+    });
+
+		// Add zoom and rotation controls to the map.
+		map.addControl(new mapboxgl.NavigationControl());
+
+    map.on('load', function() {
+        map.addSource('Homeless', {
+            type: 'vector',
+            url: 'vickyj20.c0thwesv'
+        });
+        map.addLayer({
+            'source-layer': 'Homeless'
+        });
+        
+        map.addSource('Meals', {
+            type: 'vector',
+            url: 'vickyj20.c0thwesv'
+        });
+        map.addLayer({
+            'source-layer': 'Meals'
+        });
+
+
+        map.addSource('Gender Facility', {
+            type: 'vector',
+            url: 'vickyj20.c0thwesv'
+        });
+        map.addLayer({
+            'source-layer': 'Gender Facility'
+        });
+
+				map.addSource('Low-Income', {
+						type: 'vector',
+						url: 'vickyj20.21ess0cq'
+				});
+				map.addLayer({
+						'source-layer': 'Low-Income'
+				});
+				var layers = ['0-2300', '2301-3605', '3606-4585', '4586-5095', '5096-6600', '6601-8485', '8486-10000+'];
+        var colors = ['#fcf8f2', '#f3b29b', '#ec6332', '#e84f17', '#bc3e10', '#6e2a11', '#381305'];
+
+				for (i = 0; i < layers.length; i++) {
+				  var layer = layers[i];
+				  var color = colors[i];
+				  var item = document.createElement('div');
+				  var key = document.createElement('span');
+				  key.className = 'legend-key';
+				  key.style.backgroundColor = color;
+
+				  var value = document.createElement('span');
+				  value.innerHTML = layer;
+				  item.appendChild(key);
+				  item.appendChild(value);
+				  legend.appendChild(item);
+				}
+		});
+
+    var toggleableLayerIds = ['Meals', 'Gender Facility', 'Low-Income'];
+
+    for (var i = 0; i < toggleableLayerIds.length; i++) {
+        var id = toggleableLayerIds[i];
+
+        var link = document.createElement('a');
+        link.href = '#';
+        link.className = 'active';
+        link.textContent = id;
+
+        link.onclick = function(e) {
+            var clickedLayer = this.textContent;
+            e.preventDefault();
+            e.stopPropagation();
+
+            var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
+
+            if (visibility === 'visible') {
+                map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+                this.className = '';
+            } else {
+                this.className = 'active';
+                map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+            }
+        };
+
+        var layers = document.getElementById('menu');
+        layers.appendChild(link);
+    }
+</script>
+
+</body>
+</html>
