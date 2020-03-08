@@ -159,15 +159,14 @@
         map.addLayer({
             'source-layer': 'All Homeless Shelters'
         });
-        
-        map.addSource('Youth Shelters', {
+	    
+	map.addSource('Shelters with Meals', {
             type: 'vector',
-            url: 'vickyj20.7t458c5s'
+            url: 'vickyj20.cbb8dbtn'
         });
         map.addLayer({
-            'source-layer': 'Youth Shelters'
+            'source-layer': 'Shelters with Meals'
         });
-
 
         map.addSource('All-Gender Shelters', {
             type: 'vector',
@@ -185,12 +184,12 @@
             'source-layer': 'Men Shelters'
         });
 	
-	map.addSource('Shelters with Meals', {
+	map.addSource('Youth Shelters', {
             type: 'vector',
-            url: 'vickyj20.cbb8dbtn'
+            url: 'vickyj20.7t458c5s'
         });
         map.addLayer({
-            'source-layer': 'Shelters with Meals'
+            'source-layer': 'Youth Shelters'
         });
 	
 	map.addSource('Low-Income', {
@@ -219,7 +218,7 @@
 				}
 		});
 
-    var toggleableLayerIds = ['All Homesless Shelters','Shelters with Meals', 'All-Gender Shelters', 'Men Shelters', 'Youth Shelters', 'Low-Income'];
+    var toggleableLayerIds = ['All Homeless Shelters','Shelters with Meals', 'All-Gender Shelters', 'Men Shelters', 'Youth Shelters', 'Low-Income'];
 
     for (var i = 0; i < toggleableLayerIds.length; i++) {
         var id = toggleableLayerIds[i];
