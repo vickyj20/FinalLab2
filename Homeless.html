@@ -2,18 +2,24 @@
 <html>
 <head>
 <meta charset="utf-8" />
+	// this allows for the tab of my html. to have a title
 <title>Homeless Shelters in Vancouver</title>
 <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
 <script src="https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.js"></script>
 <link href="https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.css" rel="stylesheet" />
 
 <div id='map'></div>
+// creating a textbox for the title of my map and stating what the title and captions will be.
 <div class='map-overlay' id='features'><h2>Homeless Shelters in Vancouver, BC.</h2><div id='pd'><p>This map displays two phenomena: 1) The lack of homeless shelters in Vancouver despite the presence of low-income status everywhere. 2) The saturation of homeless shelters is located in the same general area, Downtown Eastside. </p></div></div>
+// creating a textbox for my legend.
 <div class='map-overlay2' id='legend'></div>
+// this is to change the characteristics of the toggle layers
 <nav id="menu"></nav>
+// creating a textbox to change the title of the toggle layers and stating the name of the toggle layers.
 <div class='title-overlay' ><p style="color:#ffffff"> &nbsp;&nbsp;TOGGLE LAYERS<p></div>
 </head>
 <style>
+// heading stylings that are specificied
 	body { margin: 0; padding: 0; }
 h2,
 h3 { 
@@ -34,6 +40,7 @@ h3 {
 </style>
 <body>
 <style>
+// toggle layer menu
     #menu {
         background: #fff;
         position: absolute;
@@ -73,7 +80,7 @@ h3 {
     #menu a.active:hover {
         background: #3074a4;
     }
-  
+  // specifications for the location of the title text box
 .map-overlay {
   position: absolute;
   bottom: 0;
@@ -84,14 +91,14 @@ h3 {
   overflow: auto;
   border-radius: 3px;
 }
-
+// specfications for features inside the title textbox
 #features {
   top: 0;
   height: 120px;
   margin-top: 25px;
   width: 650px;
 }
-
+// specifications for the location of the legend textbox
 .map-overlay2 {
   position: absolute;
   bottom: 20px;
@@ -102,7 +109,7 @@ h3 {
   overflow: auto;
   border-radius: 3px;
 }
-	
+// specifications for legend itself	
 #legend {
   padding: 10px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
@@ -111,7 +118,7 @@ h3 {
   margin-bottom: 20px;
   width: 220px;
 }
-
+// specifications for legend features
 .legend-key {
   display: inline-block;
   border-radius: 20%;
@@ -119,7 +126,7 @@ h3 {
   height: 9px;
   margin-right: 5px;
 }
-
+// specifications for the toggle layer textbox location
 		.title-overlay {
       background-color: #414141;
 			position: absolute;
@@ -130,7 +137,7 @@ h3 {
 			font-family: 'Open Sans', sans-serif;
 			font-color: #ffffff
 		}
-
+// specifications for the toggle layer title
 		#title {
 			line-height: 0px;
 			width: 129px;
@@ -143,25 +150,29 @@ h3 {
 
 <script>
 
-
+// how the map gets displayed on the interface
 	mapboxgl.accessToken = 'pk.eyJ1Ijoidmlja3lqMjAiLCJhIjoiY2s2cmU2a2Z6MDU3OTNkbGExcTBhanlsNCJ9.AnDT5Fbe1lZxtUukEMhabA';
     var map = new mapboxgl.Map({
         container: 'map',
+	    // the custom stylings of my map
         style: 'mapbox://styles/vickyj20/ck7coq1gk0f9v1ipn8s9ftldt',
+	    // setting the zoom level of the map when the map user first sees it
 	zoom: 11.5,
+	    // setting where the center of map will be taking into consideration the zoom level
 	center: [-123.1313, 49.2635]
     });
+	// the code for pinpointing the location of the map user on the map
 var geoLocate = new mapboxgl.GeolocateControl();
 	map.addControl(geoLocate);
 	geoLocate.on('geolocate', function(e) {
     	map.setZoom(11.5);
 });
-	
+	// code for allowing the features to be clicked on
 	map.on('click', function(e) {
   var features = map.queryRenderedFeatures(e.point, {
     	layers: ['All Homeless Shelters'] // replace this with the name of the layer
   });
-
+// if the feature exists, add a pop-up to them on click
   if (!features.length) {
     return;
   }
@@ -170,13 +181,14 @@ var geoLocate = new mapboxgl.GeolocateControl();
 
   var popup = new mapboxgl.Popup({ offset: [0, -15] })
     .setLngLat(feature.geometry.coordinates)
-    .setHTML('<h3>' + feature.properties.facility + '</h3><p>' + feature.properties.phone + '</p><p>' + feature.properties.geo_local_area + '</p><p>' + feature.properties.category + '</p><br><p>meals:'+ feature.properties.meals + '</br></p>')
+  // determining what to display on the pop-up using the heading stylings from above
+    .setHTML('<h3>' + feature.properties.facility + '</h3><p>' + feature.properties.phone + '</p><p>' + feature.properties.geo_local_area + '</p><p>' + feature.properties.category + '</p><p>meals:'+ feature.properties.meals + '</p>')
     .addTo(map);
 });
 
 		// Add zoom and rotation controls to the map.
 		map.addControl(new mapboxgl.NavigationControl());
-
+// adding my source layers so that it can be used in the toggle layer function below
     map.on('load', function() {
         map.addSource('All Homeless Shelters', {
             type: 'vector',
@@ -225,6 +237,7 @@ var geoLocate = new mapboxgl.GeolocateControl();
 	map.addLayer({
 		'source-layer': 'Low-Income'
 				});
+	    // determining what I want to put on my legend and the colours
 	var layers = ['<p>Low Income Status, 2015 ($)</p>', '0-2300', '2301-3605', '3606-4585', '4586-5095', '5096-6600', '6601-8485', '8486-10000+'];
         var colors = ['','#fcf8f2', '#f3b29b', '#ec6332', '#e84f17', '#bc3e10', '#6e2a11', '#381305'];
 
@@ -243,9 +256,9 @@ var geoLocate = new mapboxgl.GeolocateControl();
 				  legend.appendChild(item);
 				}
 		});
-
+// using the source layer ids for my toggle layeer function
     var toggleableLayerIds = ['All Homeless Shelters','Shelters with Meals','All-Gender Adult Shelters','Only Men Shelters','Youth Shelters','Low-Income'];
-
+// if those layers exist, add a toggle button 
     for (var i = 0; i < toggleableLayerIds.length; i++) {
         var id = toggleableLayerIds[i];
 
@@ -258,9 +271,9 @@ var geoLocate = new mapboxgl.GeolocateControl();
             var clickedLayer = this.textContent;
             e.preventDefault();
             e.stopPropagation();
-
+// determining the clicking operations of the toggle layers
             var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
-
+		
             if (visibility === 'visible') {
                 map.setLayoutProperty(clickedLayer, 'visibility', 'none');
                 this.className = '';
