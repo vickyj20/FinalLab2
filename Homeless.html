@@ -170,7 +170,7 @@ var geoLocate = new mapboxgl.GeolocateControl();
 
   var popup = new mapboxgl.Popup({ offset: [0, -15] })
     .setLngLat(feature.geometry.coordinates)
-    .setHTML('<h3>' + feature.properties.facility + '</h3><p>' + feature.properties.geo_local_area)
+    .setHTML('<h3>' + feature.properties.facility + '</h3><p>' + feature.properties.geo_local_area + '</p>' + feature.properties.phone)
     .addTo(map);
 });
 
