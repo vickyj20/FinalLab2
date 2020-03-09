@@ -148,13 +148,13 @@ h3 {
     var map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/vickyj20/ck7coq1gk0f9v1ipn8s9ftldt',
-	zoom: 11,
+	zoom: 11.5,
 	center: [-123.1313, 49.2635]
     });
 var geoLocate = new mapboxgl.GeolocateControl();
 	map.addControl(geoLocate);
 	geoLocate.on('geolocate', function(e) {
-    	map.setZoom(8);
+    	map.setZoom(11);
 });
 	
 	map.on('click', function(e) {
