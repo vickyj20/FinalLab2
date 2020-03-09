@@ -151,14 +151,11 @@ h3 {
 	zoom: 11,
 	center: [-123.1313, 49.2635]
     });
-	  map.addControl(
-    new mapboxgl.GeolocateControl({
-      positionOptions: {
-        enableHighAccuracy: true
-      },
-      trackUserLocation: true
-    })
-  );
+var geoLocate = new mapboxgl.GeolocateControl();
+	map.addControl(geoLocate);
+	geoLocate.on('geolocate', function(e) {
+    	map.setZoom(8);
+});
 	
 	map.on('click', function(e) {
   var features = map.queryRenderedFeatures(e.point, {
