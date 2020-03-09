@@ -2,17 +2,23 @@
 <html>
 <head>
 <meta charset="utf-8" />
+	<!--This is for the title of the tab --> 
 <title>Homeless Shelters in Vancouver</title>
 <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
 <script src="https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.js"></script>
 <link href="https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.css" rel="stylesheet" />
 
 <div id='map'></div>
+	<!--Creating textbox for the title and stating what thee title will be --> 
 <div class='map-overlay' id='features'><h2>Homeless Shelters in Vancouver, BC.</h2><div id='pd'><p>This map displays two phenomena: 1) The lack of homeless shelters in Vancouver despite the presence of low-income status everywhere. 2) The saturation of homeless shelters is located in the same general area, Downtown Eastside. </p></div></div>
+	<!--Creating a textbox for my legend --> 
 <div class='map-overlay2' id='legend'></div>
+	<!--Creating a navigation menu --> 
 <nav id="menu"></nav>
+	<!--creating a title for the nevigation menu --> 
 <div class='title-overlay' ><p style="color:#ffffff"> &nbsp;&nbsp;TOGGLE LAYERS<p></div>
 </head>
+	<!--Determining the heading stylings for the text on the map --> 
 <style>
 	body { margin: 0; padding: 0; }
 h2,
@@ -33,6 +39,7 @@ h3 {
 	#map { position: absolute; top: 0; bottom: 0; width: 100%; }
 </style>
 <body>
+	<!-- Determining the specifications for the menu navigation and features, the title textbox and features, the legeend text box and features, and the toggle layer title --> 
 <style>
     #menu {
         background: #fff;
